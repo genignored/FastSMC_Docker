@@ -105,7 +105,8 @@ RUN cd /home && wget -q https://github.com/PalamaraLab/FastSMC/archive/v1.1.tar.
   && cmake .. \
   && mkdir /opt/fastsmc \
   && cmake --build . \
-  && cmake --install . --prefix /usr/local/bin
+  && chmod a+x * \
+  && mv * /usr/local/bin
 #  && cmake --install /usr/local/bin \
 #  && mv * /usr/bin
 
