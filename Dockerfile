@@ -23,6 +23,8 @@ MAINTAINER Matthew Scholz <mscholz@signaturescience.com>
 #			python3-dev \
 #			python3-pip
 
+#VOLUME ['/opt', '/usr' ]
+
 RUN    apt-get update \
 	&& DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends software-properties-common \
 	&& add-apt-repository ppa:ubuntu-toolchain-r/test \
@@ -99,19 +101,21 @@ make install
 
 RUN cd /home && wget -q https://github.com/PalamaraLab/FastSMC/archive/v1.1.tar.gz \
   &&  tar xvfpz v1.1.tar.gz \
-  && cd FastSMC-1.1 \
-  && mkdir FASTSMC_BUILD_DIR \
-  && cd FASTSMC_BUILD_DIR \
-  && cmake .. \
   && mkdir /opt/fastsmc \
-  && cmake --build . \
+  && cd /opt/fastsmc \
+  && cmake /home/FastSMC-1.1 \
+  && cmake --build . \ 
   && chmod a+x * \
-  && mv * /usr/local/bin
-#  && cmake --install /usr/local/bin \
+  && pwd \
+  && ls
+#  && cmake install \
+#  && chmod a+x * \
+#  && mv * /usr/local/bin
+#  && cmake --install --prefix /opt/fastsmc
 #  && mv * /usr/bin
 
+ENV PATH "$PATH:/opt/fastsmc"
 
 
-
-CMD ["/bin/bash"]
+ENTRYPOINT ["bash"]
 
