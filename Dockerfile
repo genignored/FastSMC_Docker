@@ -97,18 +97,19 @@ make install
 #  && cd .. \
 #  && rm -rf boost-docker-test
 
-RUN cd /home && wget https://github.com/PalamaraLab/FastSMC/archive/v1.1.tar.gz \
+RUN cd /home && wget -q https://github.com/PalamaraLab/FastSMC/archive/v1.1.tar.gz \
   &&  tar xvfpz v1.1.tar.gz \
   && cd FastSMC-1.1 \
   && mkdir FASTSMC_BUILD_DIR \
   && cd FASTSMC_BUILD_DIR \
   && cmake .. \
-  && cmake --build . \
+  && mkdir /opt/fastsmc \
+  && cmake --build . 
 #  && cmake --install /usr/local/bin \
 #  && mv * /usr/bin
 
 
 
 
-CMD ["bash"]
+CMD ["/bin/bash"]
 
