@@ -123,4 +123,4 @@ ENV PATH "$PATH:/opt/fastsmc"
 #ENTRYPOINT ["/opt/fastsmc/FastSMC_exe"]
 
 ## even cleaner
-RUN ["FastSMC_exe"]
+ENTRYPOINT ["FastSMC_exe"]
