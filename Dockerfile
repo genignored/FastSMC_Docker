@@ -117,10 +117,10 @@ RUN cd /home && wget -q https://github.com/PalamaraLab/FastSMC/archive/v1.1.tar.
 ENV PATH "$PATH:/opt/fastsmc"
 
 
-#ENTRYPOINT ["bash"]
+#RUN ["bash"]
 
 ## this works
 #ENTRYPOINT ["/opt/fastsmc/FastSMC_exe"]
 
 ## even cleaner
-ENTRYPOINT ["FastSMC_exe"]
+RUN ["FastSMC_exe"]
